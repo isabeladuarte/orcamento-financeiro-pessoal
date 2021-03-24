@@ -7,6 +7,9 @@ public class ContaCorrente extends Conta{
 	public ContaCorrente(Integer agencia, Integer numConta, String nomeBanco, 
 			double saldo, double limite, double cestaServico) {
 		super.setSaldo(saldo);
+		super.setAgencia(agencia);
+		super.setNumConta(numConta);
+		super.setNomeBanco(nomeBanco);
 		this.limite = limite;
 		this.cestaServico = cestaServico;
 	}
@@ -28,19 +31,19 @@ public class ContaCorrente extends Conta{
 	}
 	
 	public void consultarLimite() {
-		System.out.println("\nConta - Limite");
+		System.out.println("\nLimite - Conta Corrente - " + getNumConta());
 		System.out.println("Limite: R$ " + this.limite);
 	}
 	
 	public void calcSaldoMaisLimite() {
 		double calc = this.getSaldo() + this.limite; 
-		System.out.println("\nConta - Saldo + Limite");
+		System.out.println("\nSaldo + Limite - Conta Corrente -  " + getNumConta());
 		System.out.println("Saldo + Limite da Conta: R$ " + calc);
 	}
 
 	@Override
 	public String toString() {
-		return "ContaCorrente [saldo=" + getSaldo() + ", limite=" + limite + ", cestaServico=" + cestaServico + "]";
+		return "ContaCorrente [agencia=" + getAgencia() + ", numConta=" + getNumConta() + ", nomeBanco=" + getNomeBanco() + ", saldo=" + getSaldo() + ", limite=" + limite + ", cestaServico=" + cestaServico + "]";
 	}
 	
 }

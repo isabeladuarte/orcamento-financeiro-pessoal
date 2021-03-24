@@ -1,29 +1,39 @@
 package br.com.duarte.orcamento;
 
 public class ContaPoupanca extends Conta{
-	private double juros;
+	private double taxa;
 	
 	public ContaPoupanca(Integer agencia, Integer numConta, String nomeBanco, 
-			double saldo, double juros) {
+			double saldo, double taxa) {
 		super.setSaldo(saldo);
-		this.juros = juros;
+		super.setAgencia(agencia);
+		super.setNumConta(numConta);
+		super.setNomeBanco(nomeBanco);
+		this.taxa = taxa;
 	}
 	
-	public ContaPoupanca(double juros) {
-		this.juros = juros;
+	public ContaPoupanca(double taxa) {
+		this.taxa = taxa;
 	}
 
-	public double getJuros() {
-		return juros;
+	public double getTaxa() {
+		return taxa;
 	}
 
-	public void setJuros(double juros) {
-		this.juros = juros;
+	public void setTaxa(double juros) {
+		this.taxa = taxa;
 	}
+	
+	public void rendimentoConta() {
+		double calc = this.getSaldo() * taxa;
+		System.out.println("\nRendimento - Conta Poupança - " + getNumConta());
+		System.out.println("Rendimento: R$ " + calc);
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "ContaPoupanca [juros=" + juros + "]";
+		return "\nContaPoupanca "+ "[agencia=" + getAgencia() + ", numConta=" + getNumConta() + ", nomeBanco=" + getNomeBanco() + ", saldo=" + getSaldo() + ", taxa=" + taxa + "]";
 	}
 	
 }

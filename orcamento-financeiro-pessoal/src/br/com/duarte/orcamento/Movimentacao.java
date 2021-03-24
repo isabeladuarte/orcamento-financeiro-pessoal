@@ -12,8 +12,12 @@ public class Movimentacao {
 			double valorTransacao, String data) {
 		this.categoria = categoria;
 		this.descricao = descricao;
-		this.tipo = TipoMovimentacao.DESPESA;
 		this.valorTransacao = valorTransacao;
+		if(valorTransacao > 0) {
+			this.tipo = TipoMovimentacao.RECEITA;
+		} else {
+			this.tipo = TipoMovimentacao.DESPESA;
+		}
 		this.conta = conta;
 		this.data = data;
 	}
@@ -43,11 +47,7 @@ public class Movimentacao {
 	}
 
 	public TipoMovimentacao getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoMovimentacao tipo) {
-		this.tipo = tipo;
+		return this.tipo;
 	}
 
 	public double getValorTransacao() {
@@ -61,7 +61,7 @@ public class Movimentacao {
 	public void calcSacar(){
 		if(valorTransacao > 0) {
 		double calc = this.getConta().getSaldo() - valorTransacao;
-		System.out.println("\nMovimentação - Saque");
+		System.out.println("\nMovimentação - Saque - Conta " + getConta().getNumConta());
 		System.out.println("Valor de saque: R$ " + this.getValorTransacao());
 		System.out.println("Saldo atual da conta R$ " + calc);
 		} else {
@@ -72,7 +72,7 @@ public class Movimentacao {
 	public void calcDeposito() {
 		if(valorTransacao > 0) {
 		double calc = valorTransacao + this.getConta().getSaldo();
-		System.out.println("\nMovimentação - Depósito");
+		System.out.println("\nMovimentação - Depósito - Conta " + + getConta().getNumConta());
 		System.out.println("Valor de deposito: R$ " + this.getValorTransacao());
 		System.out.println("Saldo atual da conta R$ " + calc);
 		} else {
@@ -82,10 +82,7 @@ public class Movimentacao {
 
 	@Override
 	public String toString() {
-		return "Movimentacao [categoria=" + categoria + ", descricao=" + descricao + ", tipo=" + tipo
+		return "\nMovimentacao [categoria=" + categoria + ", descricao=" + descricao + ", tipo=" + tipo
 				+ ", valorTransacao=" + valorTransacao + ", conta=" + conta + ", data=" + data + "]";
 	}
-
-	
-	
 }

@@ -13,16 +13,12 @@ public class ContaPoupanca extends Conta{
 		super.setNomeBanco(nomeBanco);
 		this.taxa = taxa;
 	}
-	
-	public ContaPoupanca(BigDecimal taxa) {
-		this.taxa = taxa;
-	}
 
 	public BigDecimal getTaxa() {
 		return taxa;
 	}
 
-	public void setTaxa(double juros) {
+	public void setTaxa(BigDecimal taxa) {
 		this.taxa = taxa;
 	}
 	

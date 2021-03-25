@@ -1,11 +1,13 @@
 package br.com.duarte.orcamento;
 
+import java.math.BigDecimal;
+
 public class ContaCorrente extends Conta{
-	private double limite;
+	private BigDecimal limite;
 	private double cestaServico;
 	
 	public ContaCorrente(Integer agencia, Integer numConta, String nomeBanco, 
-			double saldo, double limite, double cestaServico) {
+			BigDecimal saldo, BigDecimal limite, double cestaServico) {
 		super.setSaldo(saldo);
 		super.setAgencia(agencia);
 		super.setNumConta(numConta);
@@ -14,11 +16,11 @@ public class ContaCorrente extends Conta{
 		this.cestaServico = cestaServico;
 	}
 	
-	public double getLimite() {
+	public BigDecimal getLimite() {
 		return limite;
 	}
 
-	public void setLimite(double limite) {
+	public void setLimite(BigDecimal limite) {
 		this.limite = limite;
 	}
 
@@ -36,7 +38,7 @@ public class ContaCorrente extends Conta{
 	}
 	
 	public void calcSaldoMaisLimite() {
-		double calc = this.getSaldo() + this.limite; 
+		BigDecimal calc = this.getSaldo().add(getLimite()); 
 		System.out.println("\nSaldo + Limite - Conta Corrente -  " + getNumConta());
 		System.out.println("Saldo + Limite da Conta: R$ " + calc);
 	}

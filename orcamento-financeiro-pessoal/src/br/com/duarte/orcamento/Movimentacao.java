@@ -1,19 +1,21 @@
 package br.com.duarte.orcamento;
 
+import java.math.BigDecimal;
+
 public class Movimentacao {
 	private Categoria categoria;
 	private String descricao;
 	private TipoMovimentacao tipo;
-	private double valorTransacao;
+	private BigDecimal valorTransacao;
 	private Conta conta;
 	private String data;
 	
 	public Movimentacao(Categoria categoria, String descricao, Conta conta,
-			double valorTransacao, String data) {
+			BigDecimal valorTransacao, String data) {
 		this.categoria = categoria;
 		this.descricao = descricao;
 		this.valorTransacao = valorTransacao;
-		if(valorTransacao > 0) {
+		if(valorTransacao.compareTo(BigDecimal.ZERO) > 0) {
 			this.tipo = TipoMovimentacao.RECEITA;
 		} else {
 			this.tipo = TipoMovimentacao.DESPESA;
@@ -50,17 +52,17 @@ public class Movimentacao {
 		return this.tipo;
 	}
 
-	public double getValorTransacao() {
+	public BigDecimal getValorTransacao() {
 		return valorTransacao;
 	}
 
-	public void setValorTransacao(double valorTransacao) {
+	public void setValorTransacao(BigDecimal valorTransacao) {
 		this.valorTransacao = valorTransacao;
 	}
 	
 	public void calcSacar(){
-		if(valorTransacao > 0) {
-		double calc = this.getConta().getSaldo() - valorTransacao;
+		if(valorTransacao.compareTo(BigDecimal.ZERO) > 0) {
+		BigDecimal calc = this.getConta().getSaldo().subtract(valorTransacao);
 		System.out.println("\nMovimentação - Saque - Conta " + getConta().getNumConta());
 		System.out.println("Valor de saque: R$ " + this.getValorTransacao());
 		System.out.println("Saldo atual da conta R$ " + calc);
@@ -70,9 +72,9 @@ public class Movimentacao {
 	}
 	
 	public void calcDeposito() {
-		if(valorTransacao > 0) {
-		double calc = valorTransacao + this.getConta().getSaldo();
-		System.out.println("\nMovimentação - Depósito - Conta " + + getConta().getNumConta());
+		if(valorTransacao.compareTo(BigDecimal.ZERO) > 0) {
+			BigDecimal calc = this.getConta().getSaldo().add(valorTransacao);
+		System.out.println("\nMovimentação - Depósito - Conta " + getConta().getNumConta());
 		System.out.println("Valor de deposito: R$ " + this.getValorTransacao());
 		System.out.println("Saldo atual da conta R$ " + calc);
 		} else {

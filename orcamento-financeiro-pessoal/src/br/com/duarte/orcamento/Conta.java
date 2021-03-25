@@ -1,10 +1,12 @@
 package br.com.duarte.orcamento;
 
+import java.math.BigDecimal;
+
 public abstract class Conta {
 	private Integer agencia;
 	private Integer numConta;
 	private String nomeBanco;
-	private double saldo;
+	private BigDecimal saldo;
 	
 	public Integer getAgencia() {
 		return agencia;
@@ -30,11 +32,11 @@ public abstract class Conta {
 		this.nomeBanco = nomeBanco;
 	}
 
-	public double getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(double saldo) {
+	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 

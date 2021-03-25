@@ -1,10 +1,12 @@
 package br.com.duarte.orcamento;
 
+import java.math.BigDecimal;
+
 public class ContaPoupanca extends Conta{
-	private double taxa;
+	private BigDecimal taxa;
 	
 	public ContaPoupanca(Integer agencia, Integer numConta, String nomeBanco, 
-			double saldo, double taxa) {
+			BigDecimal saldo, BigDecimal taxa) {
 		super.setSaldo(saldo);
 		super.setAgencia(agencia);
 		super.setNumConta(numConta);
@@ -12,11 +14,11 @@ public class ContaPoupanca extends Conta{
 		this.taxa = taxa;
 	}
 	
-	public ContaPoupanca(double taxa) {
+	public ContaPoupanca(BigDecimal taxa) {
 		this.taxa = taxa;
 	}
 
-	public double getTaxa() {
+	public BigDecimal getTaxa() {
 		return taxa;
 	}
 
@@ -25,7 +27,7 @@ public class ContaPoupanca extends Conta{
 	}
 	
 	public void rendimentoConta() {
-		double calc = this.getSaldo() * taxa;
+		BigDecimal calc = this.getSaldo().multiply(taxa);
 		System.out.println("\nRendimento - Conta Poupança - " + getNumConta());
 		System.out.println("Rendimento: R$ " + calc);
 	}
